@@ -1,0 +1,89 @@
+# ============================
+# Python
+# ============================
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+*.pyo
+*.pyd
+*.pkl
+*.so
+build/
+dist/
+.eggs/
+.venv/
+env/
+venv/
+ENV/
+*.sqlite3
+
+# ============================
+# Jupyter
+# ============================
+.ipynb_checkpoints
+*.ipynb~
+
+# ============================
+# Logs
+# ============================
+*.log
+*.out
+*.err
+*.pid
+
+# ============================
+# Airflow
+# ============================
+airflow/airflow.db
+airflow/airflow.cfg
+airflow/unittests.cfg
+airflow/logs/
+airflow/__pycache__/
+airflow/.pytest_cache/
+airflow/google/
+# ============================
+# dbt
+# ============================
+target/
+dbt_modules/
+logs/
+manifest.json
+run_results.json
+
+# ============================
+# OS / IDE
+# ============================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ============================
+# Data files
+# ============================
+*.csv
+*.tsv
+*.parquet
+*.orc
+*.avro
+*.h5
+*.db
+*.sqlite
+*.zip
+*.tar.gz
+*.bak
+*.tmp
+
+# ============================
+# Other
+# ============================
+.env
+.env.*
+# ============================
+# Secrets
+# ============================
+*.json
+*my-cred.json
