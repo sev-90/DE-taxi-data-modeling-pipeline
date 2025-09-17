@@ -60,7 +60,7 @@ def upload_to_gcs(bucket, object_name, local_file, gcp_conn_id="gcp-airflow"):
 
 
 dag = DAG(
-    dag_id= "green_taxidata_gcp_ingestion",
+    dag_id= "yellow_taxidata_gcp_ingestion",
     #cron expression: minute hour day-of-month month day-of-week (day-of-month and day-of-week are ORed logic )
     schedule="@daily",  #"0 6 2 * *", 
     start_date=datetime(2019, 1, 1),
@@ -72,9 +72,10 @@ dag = DAG(
 file_template_csv_gz = "output_{{ data_interval_start.strftime('%Y_%m') }}.csv.gz"
 file_template_csv = "output_{{ data_interval_start.strftime('%Y_%m') }}.csv"
 file_template_parquet = "output_{{ data_interval_start.strftime('%Y_%m') }}.parquet"
-consolidated_table_name = "green_{{ data_interval_start.strftime('%Y') }}"
-url_template = "https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_{{ data_interval_start.strftime('%Y-%m') }}.csv.gz"
-table_name_template = "green_taxi_{{ data_interval_start.strftime('%Y_%m') }}"
+consolidated_table_name = "yellow_{{ data_interval_start.strftime('%Y') }}"
+url_template = "https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_{{ data_interval_start.strftime('%Y-%m') }}.csv.gz"
+table_name_template = "yellow_taxi_{{ data_interval_start.strftime('%Y_%m') }}"
+
 
 # Task 1: Download data
 download_task = PythonOperator(
