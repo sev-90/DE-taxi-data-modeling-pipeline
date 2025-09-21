@@ -4,11 +4,19 @@
     )
 }}
 
-with tripdata as 
+with trip_data as 
 (
+    select * 
+    from {{ source('staging','green_2019') }}
+    union all 
+    select * 
+    from {{ source('staging','green_2020') }}
+
+),
+tripdata as (
   select *,
-    row_number() over(partition by vendorid, lpep_pickup_datetime, lpep_dropoff_datetime) as rn
-  from {{ source('staging','green_2019') }}
+    row_number() over(partition by vendorid, lpep_pickup_datetime) as rn
+  from trip_data
   where vendorid is not null 
 )
 select

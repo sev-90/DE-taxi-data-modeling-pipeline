@@ -1,10 +1,19 @@
 {{ config(materialized='view') }}
  
-with tripdata as 
+with trip_data as 
 (
+    select * 
+    from {{ source('staging','yellow_2019') }}
+    union all 
+    select * 
+    from {{ source('staging','yellow_2020') }}
+
+),
+
+tripdata as (
   select *,
-    row_number() over(partition by vendorid, tpep_pickup_datetime,tpep_dropoff_datetime) as rn
-  from {{ source('staging','yellow_2019') }}
+    row_number() over(partition by vendorid, tpep_pickup_datetime) as rn
+  from trip_data
   where vendorid is not null 
 )
 select
@@ -41,7 +50,7 @@ from tripdata
 where rn = 1
 
 -- dbt build --select <model.sql> --vars '{'is_test_run: false}'
-{% if var('is_test_run', default=true) %}
+{% if var('is_test_run', default=false) %}
 
   limit 100
 

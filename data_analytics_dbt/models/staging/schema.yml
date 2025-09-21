@@ -7,7 +7,9 @@ sources:
       # loaded_at_field: record_loaded_at
     tables:
       - name: green_2019
+      - name: green_2020
       - name: yellow_2019
+      - name: yellow_2020
          # freshness:
            # error_after: {count: 6, period: hour}
 
